@@ -1,4 +1,11 @@
 .element-div {
     margin-top: 2em;
     padding: 0.5em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: cornflowerblue;
+}
+
+.element-img {
+    padding-left: 1em;
 }

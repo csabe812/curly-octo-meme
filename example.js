@@ -24,19 +24,20 @@ function appendElement(element, contentDiv) {
 }
 
 function createLink(element, elementDiv) {
-  const theLink = document.createElement("a");
-  var linkText = document.createTextNode(element.node_id);
-  theLink.appendChild(linkText);
-  theLink.title = element.login;
-  theLink.href = element.url;
-  elementDiv.append(theLink);
+  const linkElement = document.createElement("a");
+  const linkText = document.createTextNode(element.id);
+  linkElement.appendChild(linkText);
+  linkElement.title = element.login;
+  linkElement.href = element.url;
+  elementDiv.append(linkElement);
 }
 
 function createImg(element, elementDiv) {
-  const theImg = document.createElement("img");
-  theImg.src = element.avatar_url;
-  theImg.width = 100;
-  elementDiv.append(theImg);
+  const imgElement = document.createElement("img");
+  imgElement.src = element.avatar_url;
+  imgElement.width = 100;
+  imgElement.className = "element-img";
+  elementDiv.append(imgElement);
 }
 
 createHtml();
