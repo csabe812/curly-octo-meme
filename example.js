@@ -1,7 +1,8 @@
 async function fetchData() {
-  const orgs = await fetch("https://api.github.com/users/hadley/orgs");
-  const respJson = await orgs.json();
-  return respJson;
+  const photos = await fetch("https://jsonplaceholder.typicode.com/photos");
+  const photosJson = await photos.json();
+  console.log(photosJson);
+  return photosJson;
 }
 
 async function createHtml() {
@@ -25,16 +26,16 @@ function appendElement(element, contentDiv) {
 
 function createLink(element, elementDiv) {
   const linkElement = document.createElement("a");
-  const linkText = document.createTextNode(element.id);
+  const linkText = document.createTextNode(element.title);
   linkElement.appendChild(linkText);
-  linkElement.title = element.login;
+  linkElement.title = element.id;
   linkElement.href = element.url;
   elementDiv.append(linkElement);
 }
 
 function createImg(element, elementDiv) {
   const imgElement = document.createElement("img");
-  imgElement.src = element.avatar_url;
+  imgElement.src = element.thumbnailUrl;
   imgElement.width = 100;
   imgElement.className = "element-img";
   elementDiv.append(imgElement);
