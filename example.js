@@ -1,16 +1,47 @@
-async function fetchData() {
+async function fetchPhotosData() {
   const photos = await fetch("https://jsonplaceholder.typicode.com/photos");
   const photosJson = await photos.json();
   console.log(photosJson);
   return photosJson;
 }
 
+async function fetchOnePhotoData(idx) {
+  const photo = await fetch(
+    `https://jsonplaceholder.typicode.com/photos/${idx}`
+  );
+  const photoJson = await photo.json();
+  console.log(photoJson);
+  return photoJson;
+}
+
 async function createHtml() {
-  const data = await fetchData();
+  const data = await fetchPhotosData();
   const contentDiv = document.getElementById("content-div");
-  data.forEach((element) => {
+
+  // List 5000 photo element
+  /*data.forEach((element) => {
     appendElement(element, contentDiv);
-  });
+  });*/
+
+  //List one element every second
+  setInterval(async () => {
+    const onePhotoData = await fetchOnePhotoData(
+      Math.round(Math.random() * 5000)
+    );
+    appendElement(onePhotoData, contentDiv);
+  }, 1000);
+}
+
+function setIntervalMethod() {
+  let intervalTime = createRandomInterval();
+  setInterval(() => {
+    console.log(`Just printing the random intervalTime: ${intervalTime}`);
+    intervalTime = createRandomInterval();
+  }, 1000);
+}
+
+function createRandomInterval() {
+  return Math.round(Math.random() * 2000);
 }
 
 function appendElement(element, contentDiv) {
